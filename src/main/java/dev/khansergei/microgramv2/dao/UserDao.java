@@ -20,8 +20,8 @@ public class UserDao {
 
     private final String temp = "select u.id, u.username, u.fullname, u.email, u.password, " +
                                 "(select count(id) from posts p where p.user_id = u.id) posts, " +
-                                "(select count(id) from subs s where s.follower_id = u.id) followers, " +
-                                "(select count(id) from subs s where s.user_id = u.id) following";
+                                "(select count(id) from subs s where s.follower_id = u.id) following, " +
+                                "(select count(id) from subs s where s.user_id = u.id) followers ";
 
     public void dropTable() {
         String sql = "drop table if exists users";
@@ -81,13 +81,13 @@ public class UserDao {
 
     public List<UserDto> getFollowersByUsername(String username) {
         String sql = temp + "from subs s inner join users u on u.id = s.follower_id " +
-                "where s.user_id = ( select id from users where username = ? );";
+                "where s.user_id = (select id from users where username = ?);";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(UserDto.class), username);
     }
 
     public List<UserDto> getSubsByUsername(String username) {
         String sql = temp + "from subs s inner join users u on u.id = s.user_id " +
-                "where s.follower_id = ( select id from users where username = ? );";
+                "where s.follower_id = (select id from users where username = ?);";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(UserDto.class), username);
     }
 
