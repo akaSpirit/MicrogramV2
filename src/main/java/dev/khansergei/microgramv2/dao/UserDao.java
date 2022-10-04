@@ -47,7 +47,7 @@ public class UserDao {
     public void createTableAuth() {
         String sql = "create table authorities ( " +
                     "id bigserial primary key not null, " +
-                    "user_id integer not null references users (id), " +
+                    "user_id integer not null references users(id), " +
                     "authority text not null);";
         jdbcTemplate.update(sql);
     }

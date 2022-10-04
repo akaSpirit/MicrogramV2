@@ -42,10 +42,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/likes/**",
-                        "/posts/**",
+                .antMatchers(HttpMethod.POST, "/likes/**",
                         "/comments/**",
-                        "/subscriptions/**").fullyAuthenticated();
+                        "/posts/**",
+                        "/subscriptions/**").fullyAuthenticated()
+                .antMatchers(HttpMethod.DELETE, "/comments/**",
+                        "/posts/**").fullyAuthenticated();
 
         http.authorizeRequests()
                 .anyRequest()
