@@ -48,11 +48,11 @@ public class InitDB {
 
     private List<PostDto> addPosts() {
         List<PostDto> posts = new ArrayList<>();
-        posts.add(new PostDto("test.jpg", "description1", LocalDateTime.now(), 1L));
-        posts.add(new PostDto("test.jpg", "description2", LocalDateTime.now(), 2L));
-        posts.add(new PostDto("test.jpg", "description3", LocalDateTime.now(), 3L));
-        posts.add(new PostDto("test.jpg", "description4", LocalDateTime.now(), 4L));
-        posts.add(new PostDto("test.jpg", "description5", LocalDateTime.now(), 5L));
+        posts.add(new PostDto("test1.jpg", "description1", LocalDateTime.now(), 1L));
+        posts.add(new PostDto("test2.jpg", "description2", LocalDateTime.now(), 2L));
+        posts.add(new PostDto("test3.jpg", "description3", LocalDateTime.now(), 3L));
+        posts.add(new PostDto("test4.jpg", "description4", LocalDateTime.now(), 4L));
+        posts.add(new PostDto("test5.jpg", "description5", LocalDateTime.now(), 5L));
         return posts;
     }
 
