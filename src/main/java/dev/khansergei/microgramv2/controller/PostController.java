@@ -3,6 +3,7 @@ package dev.khansergei.microgramv2.controller;
 import dev.khansergei.microgramv2.dto.PostDto;
 import dev.khansergei.microgramv2.service.PostService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/posts")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class PostController {
     private final PostService postService;
 

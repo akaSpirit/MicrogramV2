@@ -3,6 +3,7 @@ package dev.khansergei.microgramv2.controller;
 import dev.khansergei.microgramv2.dto.UserDto;
 import dev.khansergei.microgramv2.service.UserService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class RegisterController {
     private final UserService userService;
 
