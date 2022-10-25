@@ -280,7 +280,10 @@ function commentHandler(e) {
     })
     json = JSON.stringify(commentObject);
     console.log(json);
-    sendComment(json);
+
+    let parse = JSON.parse(json);
+    let postId = parseInt(parse.postId);
+    sendComment(json, postId);
 }
 
 function createNewCommentElement() {
@@ -310,7 +313,7 @@ function postHandler(e) {
 }
 
 function sendPost(json) {
-    axios.post(BASE_URL + "/posts/",
+    axios.post(BASE_URL + "/posts",
         json,
         {
             headers: {
@@ -326,8 +329,8 @@ function sendPost(json) {
         });
 }
 
-function sendComment(json) {
-    axios.post(BASE_URL + "/comments/",
+function sendComment(json, postId) {
+    axios.post(BASE_URL + "/comments/" + postId,
         json,
         {
             headers: {
