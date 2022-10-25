@@ -24,30 +24,30 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    private final DataSource dataSource;
+//    private final DataSource dataSource;
 
-    @Autowired
-    protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication()
-                .dataSource(dataSource)
-                .usersByUsernameQuery("select username, password, enabled "
-                        + "from users "
-                        + "where username = ?")
-                .authoritiesByUsernameQuery("select users.username, authority "
-                        + "from authorities "
-                        + "inner join users on authorities.user_id = users.id "
-                        + "where username = ?");
-    }
+//    @Autowired
+//    protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.jdbcAuthentication()
+//                .dataSource(dataSource)
+//                .usersByUsernameQuery("select username, password, enabled "
+//                        + "from users "
+//                        + "where username = ?")
+//                .authoritiesByUsernameQuery("select users.username, authority "
+//                        + "from authorities "
+//                        + "inner join users on authorities.user_id = users.id "
+//                        + "where username = ?");
+//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/likes/**",
-                        "/comments/**",
-                        "/posts/**",
-                        "/subscriptions/**").fullyAuthenticated()
-                .antMatchers(HttpMethod.DELETE, "/comments/**",
-                        "/posts/**").fullyAuthenticated();
+//        http.authorizeRequests()
+//                .antMatchers(HttpMethod.POST, "/likes/**",
+//                        "/comments/**",
+//                        "/posts/**",
+//                        "/subscriptions/**").fullyAuthenticated()
+//                .antMatchers(HttpMethod.DELETE, "/comments/**",
+//                        "/posts/**").fullyAuthenticated();
 
         http.authorizeRequests()
                 .anyRequest()
@@ -55,8 +55,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.httpBasic();
-        http.formLogin().disable().logout().disable();
+//        http.formLogin().and().logout();
         http.csrf().disable();
+        http.cors().disable();
     }
 
 }

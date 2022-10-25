@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Microgram</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
+    <link rel="stylesheet"
+          href="//db.onlinewebfonts.com/c/6d32b8e06f40fb7698cfb714b9e7975d?family=BillabongW00-Regular"/>
+    <link rel="stylesheet" href="../static/styles.css">
+    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
+</head>
+
+<!--<body>-->
+<body class="no-scroll">
+<div id="splash-screen">
+    <div class="section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <p class="microgram text-center align-self-center">Microgram</p>
+                <button onclick="hideSplashScreen()" class="btn mb-5">Войти</button>
+                <div class="col-12 text-center align-self-center">
+                    <div class="section pt-sm-2 text-center">
+                        <h6 class="mb-0 pb-3">
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Log In</span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Register</span></h6>
+                        <input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
+                        <label for="reg-log"></label>
+                        <div class="card-3d-wrap mx-auto">
+                            <div class="card-3d-wrapper">
+                                <div class="card-front">
+                                    <div class="center-wrap">
+                                        <div class="section text-center">
+                                            <h4 class="mb-4 pb-3">Log In</h4>
+                                            <div class="form-group">
+                                                <input type="email" name="login-email" class="form-style"
+                                                       placeholder="Your Email" id="login-email" required autofocus>
+                                                <i class="input-icon uil uil-at"></i>
+                                            </div>
+                                            <div class="form-group mt-2">
+                                                <input type="password" name="login-pass" class="form-style"
+                                                       placeholder="Your Password" id="login-pass" required
+                                                       autocomplete="off">
+                                                <i class="input-icon uil uil-lock-alt"></i>
+                                            </div>
+                                            <a href="" class="btn mt-4">submit</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-back">
+                                    <div class="center-wrap">
+                                        <div class="section text-center">
+                                            <h4 class="mb-4 pb-3">Register</h4>
+                                            <div class="form-group">
+                                                <input type="text" name="reg-username" class="form-style"
+                                                       placeholder="Your Username" id="reg-name" required>
+                                                <i class="input-icon uil uil-user"></i>
+                                            </div>
+                                            <div class="form-group mt-2">
+                                                <input type="email" name="reg-email" class="form-style"
+                                                       placeholder="Your Email" id="reg-email" required>
+                                                <i class="input-icon uil uil-at"></i>
+                                            </div>
+                                            <div class="form-group mt-2">
+                                                <input type="password" name="reg-pass" class="form-style"
+                                                       placeholder="Your Password" id="reg-pass" required
+                                                       autocomplete="off">
+                                                <i class="input-icon uil uil-lock-alt"></i>
+                                            </div>
+                                            <a href="" class="btn mt-4">submit</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main>
+    <div class="container">
+        <p class="microgram text-center align-self-center">Microgram</p>
+        <p>
+            <button onclick="showSplashScreen()" class="btn">Splash screen</button>
+        </p>
+        <p>
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#postModal">Create post</button>
+        </p>
+
+        <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="false">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="postModalLabel">Create new post</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="post-form">
+                            <input type="file" accept="image/*" name="post-attach"
+                                   id="post-attach">
+                            <hr>
+                            <textarea name="post-description" rows="3" cols="59" id="post-text"></textarea>
+                            <hr>
+                            <button type="submit" class="btn">Post</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="posts" id="posts">
+        </div>
+    </div>
+</main>
+
+<script src="../static/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+</html>
+
+
+
