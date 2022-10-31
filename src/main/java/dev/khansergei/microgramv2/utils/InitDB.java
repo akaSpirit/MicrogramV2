@@ -38,11 +38,11 @@ public class InitDB {
 
     private List<UserDto> addUsers() {
         List<UserDto> users = new ArrayList<>();
-        users.add(new UserDto("username1", "name1", "email1@email", "qwe1", true));
-        users.add(new UserDto("username2", "name2", "email2@email", "qwe2", true));
-        users.add(new UserDto("username3", "name3", "email3@email", "qwe3", true));
-        users.add(new UserDto("username4", "name4", "email4@email", "qwe4", true));
-        users.add(new UserDto("username5", "name5", "email5@email", "qwe5", true));
+        users.add(new UserDto("username1", "email1@email", "qwe1", true));
+        users.add(new UserDto("username2", "email2@email", "qwe2", true));
+        users.add(new UserDto("username3", "email3@email", "qwe3", true));
+        users.add(new UserDto("username4", "email4@email", "qwe4", true));
+        users.add(new UserDto("username5", "email5@email", "qwe5", true));
         return users;
     }
 

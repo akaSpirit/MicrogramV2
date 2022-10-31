@@ -1,7 +1,5 @@
 'use strict'
-
 const BASE_URL = "http://localhost:8998";
-
 
 class User {
     constructor(email, username, password, isAuthorized) {
@@ -145,7 +143,7 @@ function createPostElement(post) {
             <input type="hidden" name="postId" value="${post.id}">
             <input type="hidden" name="username" value="${randUser.username}">
             <textarea type="text" class="comment" id="comment-${post.id}" placeholder="Add a comment..." name="commentText" rows="2" cols="40"></textarea>
-            <button class="btn-post" >Post</button>
+            <button class="btn-post">Post</button>
             </form>
             </div>
         </div>`
@@ -348,3 +346,38 @@ function sendComment(json, postId) {
 
 postForm.addEventListener("submit", postHandler);
 postForm.addEventListener("submit", createNewPostElement);
+
+document.getElementById("reg-form").addEventListener("submit", register);
+
+function register(event) {
+    event.preventDefault();
+    const regForm = event.target;
+    const regFormData = new FormData(regForm);
+    let object = {};
+    regFormData.forEach(function(value, key){
+        object[key] = value;
+    });
+    let json = JSON.stringify(object);
+    console.log(json);
+
+    sendReg(json);
+    document.getElementById("reg-form").reset();
+}
+
+function sendReg(json) {
+    axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+    axios.post(BASE_URL + "/register/",
+        json,
+        {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+    )
+        .then(function (response) {
+            console.log(response.data);
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+}

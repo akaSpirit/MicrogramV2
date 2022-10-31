@@ -10,7 +10,6 @@
     <link rel="stylesheet"
           href="//db.onlinewebfonts.com/c/6d32b8e06f40fb7698cfb714b9e7975d?family=BillabongW00-Regular"/>
     <link rel="stylesheet" href="../static/styles.css">
-    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
 </head>
 
 <!--<body>-->
@@ -23,9 +22,7 @@
                 <button onclick="hideSplashScreen()" class="btn mb-5">Войти</button>
                 <div class="col-12 text-center align-self-center">
                     <div class="section pt-sm-2 text-center">
-                        <h6 class="mb-0 pb-3">
-                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Log In</span>
-                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Register</span></h6>
+                        <h6 class="mb-0 pb-3"><span>Register</span><span>Log In</span></h6>
                         <input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
                         <label for="reg-log"></label>
                         <div class="card-3d-wrap mx-auto">
@@ -33,43 +30,47 @@
                                 <div class="card-front">
                                     <div class="center-wrap">
                                         <div class="section text-center">
-                                            <h4 class="mb-4 pb-3">Log In</h4>
-                                            <div class="form-group">
-                                                <input type="email" name="login-email" class="form-style"
-                                                       placeholder="Your Email" id="login-email" required autofocus>
-                                                <i class="input-icon uil uil-at"></i>
-                                            </div>
-                                            <div class="form-group mt-2">
-                                                <input type="password" name="login-pass" class="form-style"
-                                                       placeholder="Your Password" id="login-pass" required
-                                                       autocomplete="off">
-                                                <i class="input-icon uil uil-lock-alt"></i>
-                                            </div>
-                                            <a href="" class="btn mt-4">submit</a>
+                                            <h4 class="mb-4 pb-3">Register</h4>
+                                            <form id="reg-form">
+                                                <div class="form-group">
+                                                    <input type="text" name="username" class="form-style"
+                                                           placeholder="Your Username" id="reg-name" required autocomplete="off">
+                                                    <i class="input-icon uil uil-user"></i>
+                                                </div>
+                                                <div class="form-group mt-2">
+                                                    <input type="email" name="email" class="form-style"
+                                                           placeholder="Your Email" id="reg-email" required autocomplete="off">
+                                                    <i class="input-icon uil uil-at"></i>
+                                                </div>
+                                                <div class="form-group mt-2">
+                                                    <input type="password" name="password" class="form-style"
+                                                           placeholder="Your Password" id="reg-pass" required
+                                                           autocomplete="off">
+                                                    <i class="input-icon uil uil-lock-alt"></i>
+                                                </div>
+                                                <button class="btn mt-4">submit</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-back">
                                     <div class="center-wrap">
                                         <div class="section text-center">
-                                            <h4 class="mb-4 pb-3">Register</h4>
-                                            <div class="form-group">
-                                                <input type="text" name="reg-username" class="form-style"
-                                                       placeholder="Your Username" id="reg-name" required>
-                                                <i class="input-icon uil uil-user"></i>
-                                            </div>
-                                            <div class="form-group mt-2">
-                                                <input type="email" name="reg-email" class="form-style"
-                                                       placeholder="Your Email" id="reg-email" required>
-                                                <i class="input-icon uil uil-at"></i>
-                                            </div>
-                                            <div class="form-group mt-2">
-                                                <input type="password" name="reg-pass" class="form-style"
-                                                       placeholder="Your Password" id="reg-pass" required
-                                                       autocomplete="off">
-                                                <i class="input-icon uil uil-lock-alt"></i>
-                                            </div>
-                                            <a href="" class="btn mt-4">submit</a>
+                                            <h4 class="mb-4 pb-3">Log In</h4>
+                                            <form id="log-form">
+                                                <div class="form-group">
+                                                    <input type="email" name="email" class="form-style"
+                                                           placeholder="Your Email" id="login-email" required autocomplete="off" autofocus>
+                                                    <i class="input-icon uil uil-at"></i>
+                                                </div>
+                                                <div class="form-group mt-2">
+                                                    <input type="password" name="password" class="form-style"
+                                                           placeholder="Your Password" id="login-pass" required
+                                                           autocomplete="off">
+                                                    <i class="input-icon uil uil-lock-alt"></i>
+                                                </div>
+                                                <button class="btn mt-4">submit</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -86,7 +87,7 @@
     <div class="container">
         <p class="microgram text-center align-self-center">Microgram</p>
         <p>
-            <button onclick="showSplashScreen()" class="btn">Splash screen</button>
+            <button onclick="showSplashScreen()" class="btn">Login / Registration</button>
         </p>
         <p>
             <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#postModal">Create post</button>
