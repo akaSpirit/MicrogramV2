@@ -18,7 +18,7 @@ public class UserDao {
     private final JdbcTemplate jdbcTemplate;
     private final PasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    private final String temp = "select u.id, u.username, u.fullname, u.email, u.password, " +
+    private final String temp = "select u.id, u.username, u.email, u.password, " +
                                 "(select count(id) from posts p where p.user_id = u.id) posts, " +
                                 "(select count(id) from subs s where s.follower_id = u.id) following, " +
                                 "(select count(id) from subs s where s.user_id = u.id) followers ";
@@ -36,7 +36,6 @@ public class UserDao {
     public void createTableUsers() {
         String sql = "create table users ( " +
                         "id bigserial primary key not null, " +
-                        "fullname varchar(50) not null, " +
                         "username varchar(50) not null, " +
                         "email varchar(50) not null, " +
                         "password varchar not null," +
@@ -50,11 +49,6 @@ public class UserDao {
                     "user_id integer not null references users(id), " +
                     "authority text not null);";
         jdbcTemplate.update(sql);
-    }
-    
-    public List<UserDto> getUserByName(String fullname) {
-        String sql = temp + "from users u where u.fullname = ?";
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(UserDto.class), fullname);
     }
 
     public List<UserDto> getUserByUsername(String username) {
@@ -93,12 +87,12 @@ public class UserDao {
 
     public String addUser(User user) {
         if (!ifExists(user)) {
-            String sql = "insert into users(username, fullname, email, password, enabled) values(?, ?, ?, ?, true)";
-            var sm = jdbcTemplate.update(sql, user.getUsername(), user.getFullname(), user.getEmail(), encoder.encode(user.getPassword()));
+            String sql = "insert into users(username, email, password, enabled) values(?, ?, ?, true)";
+            var sm = jdbcTemplate.update(sql, user.getUsername(), user.getEmail(), encoder.encode(user.getPassword()));
             createAuthority(user.getUsername());
             return "Success";
         }
-        return "Try again";
+        return "Try again. A user with the same email or username already exists.";
     }
 
     private void createAuthority(String username) {
@@ -139,17 +133,16 @@ public class UserDao {
     }
 
     public void addData(List<UserDto> users) {
-        String sql = "insert into users(username, fullname, email, password, enabled) values(?, ?, ?, ?, ?)";
+        String sql = "insert into users(username, email, password, enabled) values(?, ?, ?, ?)";
         String sqlAuth = "insert into authorities(user_id, authority) values(?, ?)";
         for (int i = 0; i < users.size(); i++) {
             int finalI = i;
             jdbcTemplate.update(conn -> {
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ps.setString(1, users.get(finalI).getUsername());
-                ps.setString(2, users.get(finalI).getFullname());
-                ps.setString(3, users.get(finalI).getEmail());
-                ps.setString(4, encoder.encode(users.get(finalI).getPassword()));
-                ps.setBoolean(5, users.get(finalI).isEnabled());
+                ps.setString(2, users.get(finalI).getEmail());
+                ps.setString(3, encoder.encode(users.get(finalI).getPassword()));
+                ps.setBoolean(4, users.get(finalI).isEnabled());
                 return ps;
             });
             jdbcTemplate.update(sqlAuth, i + 1, "USER");

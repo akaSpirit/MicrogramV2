@@ -13,10 +13,6 @@ import java.util.List;
 public class UserService {
     private final UserDao userDao;
 
-    public List<UserDto> getUserByName(String name) {
-        return userDao.getUserByName(name);
-    }
-
     public List<UserDto> getUserByUsername(String username) {
         return userDao.getUserByUsername(username);
     }
@@ -35,8 +31,6 @@ public class UserService {
     public String addUser(UserDto userDto) {
         if (userDto.getUsername() == null)
             return "Username cannot be null";
-        if (userDto.getFullname() == null)
-            return "Fullname cannot be null";
         if (userDto.getEmail() == null)
             return "Email cannot be null";
         if (userDto.getPassword() == null)
@@ -44,7 +38,6 @@ public class UserService {
         return userDao.addUser(
                 User.builder()
                         .username(userDto.getUsername())
-                        .fullname(userDto.getFullname())
                         .email(userDto.getEmail())
                         .password(userDto.getPassword())
                         .build());
